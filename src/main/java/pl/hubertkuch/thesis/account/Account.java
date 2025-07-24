@@ -18,7 +18,6 @@ public class Account {
     private String slug;
     private String name;
     private String email;
-    private String password;
 
     private boolean deleted = false;
 
@@ -38,7 +37,6 @@ public class Account {
         acc.setEmail(command.email());
         acc.setSlug(command.slug());
         acc.setName(command.name());
-        acc.setPassword(command.password());
 
         return acc;
     }
