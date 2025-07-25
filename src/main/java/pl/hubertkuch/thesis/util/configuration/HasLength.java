@@ -1,4 +1,4 @@
-package pl.hubertkuch.thesis.application.configuration;
+package pl.hubertkuch.thesis.util.configuration;
 
 import lombok.Data;
 
