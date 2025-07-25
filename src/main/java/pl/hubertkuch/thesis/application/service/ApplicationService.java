@@ -9,6 +9,7 @@ import pl.hubertkuch.thesis.application.Application;
 import pl.hubertkuch.thesis.application.command.ApplicationCreationRequest;
 import pl.hubertkuch.thesis.application.exceptions.ApplicationAlreadyExistsException;
 import pl.hubertkuch.thesis.application.repo.ApplicationRepo;
+import pl.hubertkuch.thesis.application.validator.ApplicationValidator;
 
 @Service
 @Validated
@@ -16,6 +17,7 @@ import pl.hubertkuch.thesis.application.repo.ApplicationRepo;
 public class ApplicationService {
 
     private final ApplicationRepo repo;
+    private final ApplicationValidator validator;
 
     @Transactional
     public Application createApplication(@Valid ApplicationCreationRequest cmd) {
@@ -25,6 +27,9 @@ public class ApplicationService {
         if (maybeApp.isPresent()) {
             throw new ApplicationAlreadyExistsException();
         }
+
+        // validate
+        validator.validateCreationCmd(cmd);
 
         // save application
         var app = Application.create(cmd);
