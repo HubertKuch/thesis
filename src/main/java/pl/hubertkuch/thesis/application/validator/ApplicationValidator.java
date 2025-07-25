@@ -1,11 +1,13 @@
 package pl.hubertkuch.thesis.application.validator;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import pl.hubertkuch.thesis.application.command.ApplicationCreationRequest;
 import pl.hubertkuch.thesis.application.configuration.ApplicationConfiguration;
 import pl.hubertkuch.thesis.application.exceptions.ApplicationValidationException;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class ApplicationValidator {
@@ -25,10 +27,10 @@ public class ApplicationValidator {
     }
 
     private boolean validateName(String name) {
-        return name.length() >= conf.getName().getMaxLength() && name.length() <= conf.getName().getMaxLength();
+        return name.length() >= conf.getName().getMinLength() && name.length() <= conf.getName().getMaxLength();
     }
 
     private boolean validateDesc(String desc) {
-        return desc.length() >= conf.getDesc().getMaxLength() && desc.length() <= conf.getDesc().getMaxLength();
+        return desc.length() >= conf.getDesc().getMinLength() && desc.length() <= conf.getDesc().getMaxLength();
     }
 }

@@ -1,5 +1,6 @@
 package pl.hubertkuch.thesis.application.configuration;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
