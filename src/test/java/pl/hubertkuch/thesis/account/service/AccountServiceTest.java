@@ -3,16 +3,8 @@ package pl.hubertkuch.thesis.account.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.context.annotation.Import;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.support.TransactionTemplate;
-import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
+import pl.hubertkuch.thesis.OnDbTest;
 import pl.hubertkuch.thesis.account.Account;
 import pl.hubertkuch.thesis.account.command.AccountCreationRequest;
 import pl.hubertkuch.thesis.account.command.AccountUpdateRequest;
@@ -21,22 +13,10 @@ import pl.hubertkuch.thesis.account.exception.AccountBusyException;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.transaction.annotation.Propagation.NOT_SUPPORTED;
 
-@Testcontainers
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Transactional(propagation = NOT_SUPPORTED)
 @Import(AccountService.class)
-class AccountServiceTest {
-    @Container
-    @ServiceConnection
-    public static final PostgreSQLContainer<?> POSTGRES = new PostgreSQLContainer<>("postgres:14");
+class AccountServiceTest extends OnDbTest {
 
-    @Autowired
-    private TransactionTemplate transactionTemplate;
-    @Autowired
-    private TestEntityManager em;
     @Autowired
     private AccountService accountService;
 
@@ -105,7 +85,5 @@ class AccountServiceTest {
         assertThrows(AccountBusyException.class, () -> {
             accountService.updateAccount(UUID.fromString(newAccount2.getId()), uCmd2);
         });
-
-
     }
 }
