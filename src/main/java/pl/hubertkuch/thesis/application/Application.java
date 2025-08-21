@@ -6,8 +6,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import pl.hubertkuch.thesis.account.Account;
-import pl.hubertkuch.thesis.application.command.ApplicationCreationRequest;
-import pl.hubertkuch.thesis.application.command.ApplicationUpdateRequest;
+import pl.hubertkuch.thesis.application.command.AppCreationRequest;
+import pl.hubertkuch.thesis.application.command.AppUpdateRequest;
 
 import java.util.UUID;
 
@@ -22,7 +22,7 @@ public class Application {
     @JoinColumn(name = "owner_id")
     private Account owner;
 
-    public static Application create(ApplicationCreationRequest cmd) {
+    public static Application create(AppCreationRequest cmd) {
         Application app = new Application();
 
         app.setName(cmd.name());
@@ -32,7 +32,7 @@ public class Application {
         return app;
     }
 
-    public Application update(ApplicationUpdateRequest cmd) {
+    public Application update(AppUpdateRequest cmd) {
         this.name = cmd.name();
         this.description = cmd.description();
 
