@@ -105,7 +105,5 @@ class AccountServiceTest {
         assertThrows(AccountBusyException.class, () -> {
             accountService.updateAccount(UUID.fromString(newAccount2.getId()), uCmd2);
         });
-
-
     }
 }
