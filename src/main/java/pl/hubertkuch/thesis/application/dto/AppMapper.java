@@ -5,8 +5,8 @@ import org.mapstruct.factory.Mappers;
 import pl.hubertkuch.thesis.application.Application;
 
 @Mapper
-public interface ApplicationMapper {
-    ApplicationMapper INSTANCE = Mappers.getMapper(ApplicationMapper.class);
+public interface AppMapper {
+    AppMapper INSTANCE = Mappers.getMapper(AppMapper.class);
 
-    ApplicationDTO toDto(Application application);
+    AppDTO toDto(Application application);
 }

@@ -8,8 +8,8 @@ import org.springframework.context.annotation.PropertySource;
 @Data
 @Configuration
 @ConfigurationProperties("app")
-@PropertySource("classpath:/applications.properties")
-public class ApplicationConfiguration {
-    private ApplicationNameConfiguration name;
-    private ApplicationDescConfiguration desc;
+@PropertySource("classpath:/config.applications.properties")
+public class AppsConfig {
+    private AppNameConfiguration name;
+    private AppDescConfiguration desc;
 }

@@ -8,6 +8,6 @@ import pl.hubertkuch.thesis.application.Application;
 import java.util.Optional;
 
 @Repository
-public interface ApplicationRepo extends JpaRepository<Application, String> {
+public interface AppRepo extends JpaRepository<Application, String> {
     Optional<Application> findByNameAndOwner(String name, Account owner);
 }

@@ -6,5 +6,5 @@ import pl.hubertkuch.thesis.util.configuration.HasLength;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ApplicationNameConfiguration extends HasLength {
+public class AppNameConfiguration extends HasLength {
 }
